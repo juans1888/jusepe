@@ -1,5 +1,7 @@
+import FpTsExamples from './fp-ts'
+
 function App() {
-  return <>Jusepe</>
+  return <FpTsExamples />
 }
 
 export default App
