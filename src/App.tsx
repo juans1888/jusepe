@@ -1,17 +1,11 @@
-import CodeMirrorCard from './components/codeMirror-Card'
-
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:2742628736.
-const T = `import { pipe } from 'fp-ts/lib/function
-
-const addOne = (x: number) => x + 1
-const double = (x: number) => x * 2
-const square = (x: number) => x * x
-
-const concatenatedFunctions = pipe(1, addOne, double, square)
-`
+import { Divide2 } from './effect/divide'
 
 function App() {
-  return <CodeMirrorCard code={T} />
+  return (
+    <div className='m-5'>
+      <Divide2 />
+    </div>
+  )
 }
 
 export default App
