@@ -1,9 +1,9 @@
-import { Divide2 } from './effect/divide'
+import SynchronousEffects from './effect/synchronous-effects'
 
 function App() {
   return (
     <div className='m-5'>
-      <Divide2 />
+      <SynchronousEffects />
     </div>
   )
 }

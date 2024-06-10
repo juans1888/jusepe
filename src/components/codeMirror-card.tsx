@@ -18,7 +18,7 @@ const CodeMirrorCard = ({
       extensions={[javascript({ jsx: true, typescript: true })]}
       onChange={setStateCode}
       readOnly={!edit}
-      className='border border-gray-300 m-5'
+      className='border border-gray-300 m-5 text-sm'
     />
   )
 }
