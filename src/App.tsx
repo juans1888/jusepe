@@ -1,9 +1,9 @@
-import SynchronousEffects from './effect/synchronous-effects'
+import HandleErrors from './effect/handle-errors'
 
 function App() {
   return (
     <div className='m-5'>
-      <SynchronousEffects />
+      <HandleErrors />
     </div>
   )
 }

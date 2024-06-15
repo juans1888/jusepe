@@ -4,10 +4,12 @@ import { useState } from 'react'
 
 const CodeMirrorCard = ({
   code = '',
-  edit = false
+  edit = false,
+  ...props
 }: {
   code?: string
   edit?: boolean
+  [key: string]: any
 }) => {
   const [stateCode, setStateCode] = useState(code)
 
@@ -19,6 +21,7 @@ const CodeMirrorCard = ({
       onChange={setStateCode}
       readOnly={!edit}
       className='border border-gray-300 m-5 text-sm'
+      {...props}
     />
   )
 }

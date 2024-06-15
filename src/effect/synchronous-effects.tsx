@@ -35,21 +35,44 @@ import CodeMirrorCard from '../components/codeMirror-card'
 
 const DIVIDE = `const divide = (a: number, b: number): number => a/b`
 
-const SYNC1VANILLAJS = `const getDivision = (a: number, b: number) => {
+const VANILLAJS_RETURN_STRING_ERROR = `const getDivision = (a: number, b: number): number | string => {
   const response = divide(a, b)
 
   return response === Infinity ? 'Error: x/0' : response
 }
+
+getDivision(5, 2) // 2.5
+getDivision(5, 0) // Error: x/0
+`
+
+const VANILLAJS_RETURN_ERROR = `const getDivision = (a: number, b: number): number | Error => {
+  const response = divide(a, b)
+
+  return response === Infinity ? new Error('x/0') : response
+}
+`
+
+const VANILLAJS_RETURN_ERROR_CONSOLE = `Error: x/0
+at vanillaJsReturnError (synchronous-effects.tsx?t=1718061411364:43:34)
+at synchronous-effects.tsx?t=1718061411364:45:11
 `
 
 const divide = (a: number, b: number): number => a / b
 
-const sync1VanillaJs = (a: number, b: number) => {
+const vanillaJsReturnStringError = (a: number, b: number): number | string => {
   const response = divide(a, b)
 
   return response === Infinity ? 'Error: x/0' : response
 }
 
+const vanillaJsReturnError = (a: number, b: number): number | Error => {
+  const response = divide(a, b)
+
+  return response === Infinity ? new Error('x/0') : response
+}
+
+const s = vanillaJsReturnError(5, 0)
+console.log(s)
 const SynchronousEffects = () => {
   return (
     <Card className='text-gray-700'>
@@ -57,7 +80,7 @@ const SynchronousEffects = () => {
         <header className='mb-5'>
           <header>
             <h1 className='text-center text-lg font-bold text-violet-800'>
-              Modelación de efectos síncronos
+              Manejar errores en Javascript
             </h1>
             <p className='text-center'>
               <a
@@ -92,8 +115,18 @@ const SynchronousEffects = () => {
             manejar dicho error para realizar una acción adicional, se podría
             seguir la siguiente aproximación (una de muchas estrategias)
           </p>
-          <CodeMirrorCard code={SYNC1VANILLAJS} />
-          {sync1VanillaJs(5, 0)}
+          <CodeMirrorCard code={VANILLAJS_RETURN_STRING_ERROR} />
+          <p>
+            Por otra parte, si no queremos realizar alguna acción adicional y
+            solo dejar una trazabilidad del error, se optar por:
+          </p>
+          <CodeMirrorCard code={VANILLAJS_RETURN_ERROR} />
+          <p>
+            En este caso, si existe un error se devolvera un tipo object con los
+            datos del error. Por ejemplo,si hacemos
+            console.log(getDivision(5,0)) obtendriamos
+          </p>
+          <CodeMirrorCard code={VANILLAJS_RETURN_ERROR_CONSOLE} theme='light' />
         </section>
       </article>
     </Card>
